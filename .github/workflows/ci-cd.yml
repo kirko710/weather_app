@@ -63,8 +63,11 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Deploy to staging
+        env:
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
         run: |
           echo "🚀 Deploying to staging..."
+          echo "DB_PASSWORD is set: ${{ secrets.DB_PASSWORD != '' }}"
           echo "✅ Staging deployed successfully!"
 
   deploy-production:
@@ -79,6 +82,9 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Deploy to production
+        env:
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
         run: |
           echo " Deploying to production..."
+          echo "DB_PASSWORD is set: ${{secrets.DB_PASSWORD != ''}}"
           echo " Production deployed successfully!"
